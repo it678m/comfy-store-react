@@ -6,8 +6,8 @@ const Login = () => {
     <section className="grid min-h-screen place-items-center">
       <Form
         method="POST"
-        className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4">
-        <h4 className="text-center text-3xl font-bold">login</h4>
+        className="card w-70 sm:w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4">
+        <h4 className="text-center text-3xl font-bold">Login</h4>
         <FormInput
           type="email"
           label="email"
@@ -29,7 +29,7 @@ const Login = () => {
         <p className="text-center">
           Not a member yet?{" "}
           <Link
-            to="register"
+            to="/register"
             className="ml-2 link link-hover link-primary capitalize">
             register
           </Link>
