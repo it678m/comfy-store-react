@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 
 const themes = {
   winter: "winter",
-  night: "night",
+  // night: "night",
+  dracula: "dracula",
   // add more themes
 };
 
@@ -18,8 +19,8 @@ const Navbar = () => {
   const [theme, setTheme] = useState(getThemeFromLocalStorage());
 
   const handleTheme = () => {
-    const { winter, night } = themes;
-    const newTheme = theme === winter ? night : winter;
+    const { winter, dracula } = themes;
+    const newTheme = theme === winter ? dracula : winter;
     setTheme(newTheme);
   };
 
