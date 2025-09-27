@@ -21,9 +21,9 @@ const ProductsContainer = () => {
     <>
       {/* HEADER */}
       <div className="flex justify-between items-center mt-8 border-b border-base-300 pb-5">
-        <h className="font-medium text-md">
-          {totalProducts} products{totalProducts > 1 && "s"}
-        </h>
+        <h4 className="font-medium text-md">
+          {totalProducts} product{totalProducts > 1 && "s"}
+        </h4>
         <div className="flex gap-x-2">
           <button
             type="button"

@@ -2,7 +2,7 @@ const SelectInput = ({ label, name, list, defaultValue, size }) => {
   return (
     <div className="form-control">
       <label htmlFor={name} className="label">
-        <span className="label-text capitalize mb-1 ">{label}</span>
+        <span className="label-text capitalize mb-1">{label}</span>
       </label>
       <select
         name={name}
