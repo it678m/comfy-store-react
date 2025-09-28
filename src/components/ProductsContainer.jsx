@@ -42,7 +42,9 @@ const ProductsContainer = () => {
       {/* PRODUCTS */}
       <div>
         {totalProducts === 0 ? (
-          <h5>Sorry, no products matched to your search...</h5>
+          <h5 className="text-2xl mt-16">
+            Sorry, no products matched to your search...
+          </h5>
         ) : layout === "grid" ? (
           <ProductsGrid />
         ) : (
