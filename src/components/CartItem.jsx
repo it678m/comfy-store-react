@@ -3,6 +3,16 @@ import { useDispatch } from "react-redux";
 import { removeItem, editItem } from "../features/cart/cartSlice";
 
 const CartItem = ({ cartItem }) => {
+  const dispatch = useDispatch();
+
+  const removeItemFromTheCart = () => {
+    dispatch(removeItem({ cartID }));
+  };
+
+  const handleAmountInTheCart = (e) => {
+    dispatch(editItem({ cartID, amount: parseInt(e.target.value) }));
+  };
+
   const { cartID, amount, title, price, image, company, productColor } =
     cartItem;
 
@@ -32,7 +42,7 @@ const CartItem = ({ cartItem }) => {
             style={{ background: productColor }}></span>
         </p>
       </div>
-      <div className="sm:ml-24">
+      <div className="sm:ml-12">
         {/* AMOUNT */}
         <div className="form-control max-w-xs">
           <label htmlFor="amount" className="label p-0">
@@ -41,12 +51,16 @@ const CartItem = ({ cartItem }) => {
           <select
             name="amount"
             id="amount"
-            className="select select-bordered select-xs select-base mt-2">
+            className="select select-bordered select-xs select-base mt-2"
+            value={amount}
+            onChange={handleAmountInTheCart}>
             {generateAmountOptions(amount + 5)}
           </select>
         </div>
         {/* REMOVE */}
-        <button className="link link-hover link-primary text-sm mt-2">
+        <button
+          className="link link-hover link-primary text-sm mt-2"
+          onClick={removeItemFromTheCart}>
           remove
         </button>
       </div>
