@@ -1,7 +1,7 @@
 const FormInput = ({ label, name, type, defaultValue, size }) => {
   return (
     <div className="form-control">
-      <label className="label">
+      <label htmlFor={label} className="label">
         <span className="label-text mb-1 tracking-wide">{label}</span>
       </label>
       <input
