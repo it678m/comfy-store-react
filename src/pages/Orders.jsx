@@ -23,7 +23,6 @@ export const loader =
           Authorization: `Bearer ${user.token}`,
         },
       });
-      console.log(response);
       return { orders: response.data.data, meta: response.data.meta };
     } catch (error) {
       console.log(error);
@@ -38,10 +37,18 @@ export const loader =
   };
 
 const Orders = () => {
+  const { meta } = useLoaderData();
+
+  if (meta.pagination.total < 1) {
+    return <SectionTitle text="please make an order" />;
+  }
+
   return (
-    <div>
+    <>
+      <SectionTitle text="Your Orders" />
       <OrdersList />
-    </div>
+      <PaginationContainer />
+    </>
   );
 };
 

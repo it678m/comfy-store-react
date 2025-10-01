@@ -23,7 +23,11 @@ const PaginationContainer = () => {
       <div className="join">
         <button
           className="join-item btn btn-xs sm:btn-md"
-          onClick={() => handlePageChange("prev")}>
+          onClick={() => {
+            let prevPage = page - 1;
+            if (prevPage < 1) prevPage = pageCount;
+            handlePageChange(prevPage);
+          }}>
           Prev
         </button>
         {pages.map((pageNumber) => {
@@ -40,7 +44,11 @@ const PaginationContainer = () => {
         })}
         <button
           className="join-item btn btn-xs sm:btn-md"
-          onClick={() => handlePageChange("next")}>
+          onClick={() => {
+            let nextPage = page + 1;
+            if (nextPage > pageCount) nextPage = 1;
+            handlePageChange(nextPage);
+          }}>
           Next
         </button>
       </div>
