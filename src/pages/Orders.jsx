@@ -1,4 +1,8 @@
-import { OrdersList, SectionTitle, PaginationContainer } from "../components";
+import {
+  OrdersList,
+  SectionTitle,
+  ComplexPaginationContainer,
+} from "../components";
 import { redirect, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils";
@@ -47,7 +51,7 @@ const Orders = () => {
     <>
       <SectionTitle text="Your Orders" />
       <OrdersList />
-      <PaginationContainer />
+      <ComplexPaginationContainer />
     </>
   );
 };
