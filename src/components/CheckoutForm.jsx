@@ -1,12 +1,12 @@
-import { data, Form, redirect } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
 import FormInput from "./FormInput";
 import SubmitBtn from "./SubmitBtn";
+import { customFetch, formatPrice } from "../utils";
 import { toast } from "react-toastify";
 import { clearCart } from "../features/cart/cartSlice";
-import { customFetch, formatPrice } from "../utils";
 
 export const action =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     const formData = await request.formData();
     const { name, address } = Object.fromEntries(formData);
@@ -26,15 +26,14 @@ export const action =
     try {
       const response = await customFetch.post(
         "/orders",
-        {
-          data: info,
-        },
+        { data: info },
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
         }
       );
+      queryClient.removeQueries(["orders"]);
       store.dispatch(clearCart());
       toast.success("order placed successfully");
       return redirect("/orders");
@@ -44,9 +43,7 @@ export const action =
         error?.response?.data?.error?.message ||
         "there was an error placing your order";
       toast.error(errorMessage);
-
-      if (error.response.status === 401 || 403) return redirect("/login");
-
+      if (error?.response?.status === 401 || 403) return redirect("/login");
       return null;
     }
   };
@@ -57,11 +54,10 @@ const CheckoutForm = () => {
       <h4 className="font-medium text-xl capitalize">shipping information</h4>
       <FormInput label="first name" name="name" type="text" size="w-full" />
       <FormInput label="address" name="address" type="text" size="w-full" />
-      <div className="mt-4" size="w-full">
+      <div className="mt-4">
         <SubmitBtn text="place your order" />
       </div>
     </Form>
   );
 };
-
 export default CheckoutForm;
